@@ -1,6 +1,5 @@
 from argparse import ArgumentParser
 import sys
-from source.utils import equal
 from source.Command import Command
 from importlib import import_module
 from pathlib import Path
