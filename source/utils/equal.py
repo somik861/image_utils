@@ -36,7 +36,9 @@ class CMD(Command):
         equal_map = fst == snd
         equal = np.all(equal_map)
         if not equal:
-            print(f'Missmatch in {np.sum(equal_map)} elements')
+            total_elems = equal_map.size
+            missmatch = total_elems - np.sum(equal_map)
+            print(f'Missmatch in {missmatch} elements (out of {total_elems}) {missmatch / total_elems * 100.0 :.2f} %')
             diff = np.abs(fst.astype(np.float64) - snd.astype(np.float64))
             print(f'Average difference {diff.mean()}')
             print(f'Biggest difference {diff.max()}')
