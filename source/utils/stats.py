@@ -16,7 +16,7 @@ class CMD(Command):
         min_, max_, mean, stdev = image.min(), image.max(), image.mean(), image.std()
 
         print(f'shape: {image.shape}')
-        print()
+        print(f'type: {image.dtype}')
         print(f'min: {min_}')
         print(f'max: {max_}')
         print(f'mean: {mean}')
