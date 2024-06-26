@@ -16,6 +16,7 @@ class CMD(Command):
     def add_options(self, parser: ArgumentParser) -> None:
         parser.add_argument('fst_file', type=Path)
         parser.add_argument('snd_file', type=Path)
+        parser.add_argument('--print_locations', action='store_true', help='Print missmatch pixels location')
 
     def _check_property(self, fst: T, snd: T, name: str) -> bool:
         if fst == snd:
@@ -43,5 +44,10 @@ class CMD(Command):
             print(f'Average difference {diff.mean()}')
             print(f'Biggest difference {diff.max()}')
             print(f'Smallest difference {diff.min()}')
+
+            if args.print_locations:
+                print('Missmatch locations:')
+                for row, col in zip(*np.where(equal_map == 0)):
+                    print(f'Row: {row}; Col: {col}')
         else:
             print(f'Equal: {equal}')
